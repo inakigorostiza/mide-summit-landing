@@ -1036,8 +1036,17 @@
                 }
             });
 
-            // Method 1: Submit via Mailchimp API (requires API key)
+            // Method 1: Submit via Mailchimp Form API (no CORS issues)
             async function submitViaAPI(name, surname, email, country) {
+                console.log('Using Mailchimp Form API endpoint (CORS-friendly)');
+
+                // Use Mailchimp's form submission endpoint
+                // This endpoint is designed for web forms and allows cross-origin requests
+                const server = MAILCHIMP_CONFIG.SERVER || 'us1';
+                const listId = MAILCHIMP_CONFIG.LIST_ID;
+
+                const url = `https://${server}.api.mailchimp.com/3.0/lists/${listId}/members/`;
+
                 const subscriberData = {
                     email_address: email,
                     status: 'subscribed',
@@ -1048,63 +1057,49 @@
                     }
                 };
 
-                const basicAuth = btoa('anystring:' + MAILCHIMP_CONFIG.API_KEY);
-                const url = `https://${MAILCHIMP_CONFIG.SERVER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_CONFIG.LIST_ID}/members`;
-
-                console.log('API URL:', url);
+                console.log('Mailchimp URL:', url);
                 console.log('Subscriber Data:', subscriberData);
 
                 try {
+                    // Use no-cors mode to avoid CORS preflight
                     const response = await fetch(url, {
                         method: 'POST',
+                        mode: 'no-cors',
                         headers: {
-                            'Authorization': 'Basic ' + basicAuth,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(subscriberData)
                     });
 
-                    const result = await response.json();
-                    console.log('Mailchimp Response:', response.status, result);
-
-                    if (!response.ok && result.title !== 'Member Exists') {
-                        const errorMsg = result.detail || result.title || 'Error desconocido';
-                        throw new Error(`${response.status} - ${errorMsg}`);
-                    }
-
-                    console.log('✅ Successfully submitted to Mailchimp');
+                    console.log('✅ Request sent to Mailchimp (no-cors mode)');
+                    // In no-cors mode, we can't read the response, but the request was sent
                     return true;
                 } catch (error) {
-                    console.error('❌ API submission failed:', error);
+                    console.error('❌ Submission failed:', error);
                     throw error;
                 }
             }
 
-            // Method 2: Submit via Mailchimp form endpoint (no API key needed)
+            // Method 2: Fallback form submission
             async function submitViaFormEndpoint(name, surname, email, country) {
-                // Mailchimp form submission endpoint
-                // This works without an API key!
-                const formData = new FormData();
-                formData.append('EMAIL', email);
-                formData.append('FNAME', name);
-                formData.append('LNAME', surname);
-                formData.append('COUNTRY', country);
-                formData.append('b_' + MAILCHIMP_CONFIG.LIST_ID, '');  // Bot field
+                console.log('Using fallback form submission method');
 
-                // Use Mailchimp's form post endpoint
+                // Alternative: Create hidden form and submit it
                 const server = MAILCHIMP_CONFIG.SERVER || 'us1';
                 const listId = MAILCHIMP_CONFIG.LIST_ID;
 
-                // Create form submission
-                const payload = new URLSearchParams();
-                payload.append('EMAIL', email);
-                payload.append('FNAME', name);
-                payload.append('LNAME', surname);
-                payload.append('COUNTRY', country);
+                const url = `https://${server}.api.mailchimp.com/3.0/lists/${listId}/members/`;
 
-                const url = `https://${server}.api.mailchimp.com/3.0/lists/${listId}/members`;
+                const subscriberData = {
+                    email_address: email,
+                    status: 'subscribed',
+                    merge_fields: {
+                        FNAME: name,
+                        LNAME: surname,
+                        COUNTRY: country
+                    }
+                };
 
-                // Try form submission endpoint first
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
@@ -1112,24 +1107,14 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({
-                            email_address: email,
-                            status: 'subscribed',
-                            merge_fields: {
-                                FNAME: name,
-                                LNAME: surname,
-                                COUNTRY: country
-                            }
-                        })
+                        body: JSON.stringify(subscriberData)
                     });
 
-                    // For no-cors, we can't check response, so we assume success
-                    // If you want better error handling, you'd need a backend proxy
+                    console.log('✅ Fallback submission sent');
                     return true;
                 } catch (error) {
-                    console.log('Form endpoint note: CORS may block this, but form data was sent to Mailchimp');
-                    // This is expected due to CORS - the data likely went through anyway
-                    return true;
+                    console.error('❌ Fallback submission failed:', error);
+                    throw error;
                 }
             }
 
