@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDE Summit SEO 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a1a;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #FFB800 0%, #FF9500 100%);
+            border-radius: 3px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Hero Section */
+        header {
+            position: relative;
+            height: 700px;
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.85) 0%, rgba(40, 40, 60, 0.85) 100%),
+                        radial-gradient(circle at 20% 80%, rgba(255, 184, 0, 0.05) 0%, transparent 50%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700"><defs><pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="1200" height="700" fill="url(%23dots)"/></svg>');
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        header .event-info {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            border: 2px solid #FFB800;
+            background: #FFB800;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #FFB800;
+            box-shadow: 0 6px 20px rgba(255, 184, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFB800;
+            border: 2px solid #FFB800;
+        }
+
+        .btn-secondary:hover {
+            background: #FFB800;
+            color: #1a1a1a;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        main {
+            background: #fff;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+        }
+
+        /* Event Details */
+        #event-details {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 4px;
+            border-top: 4px solid #FFB800;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .detail-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .detail-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .detail-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Description */
+        #description {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 4px;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #description h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        #description p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Benefits */
+        #benefits {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 4px;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #benefits h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            color: #1a1a1a;
+        }
+
+        #benefits ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        #benefits li {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid #FFB800;
+            border-radius: 2px;
+            color: #555;
+            line-height: 1.8;
+            transition: all 0.3s;
+        }
+
+        #benefits li:hover {
+            background: #f0f0f0;
+        }
+
+        #benefits li::before {
+            content: "✓ ";
+            color: #FFB800;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* Schedule */
+        #schedule {
+            background: #f8f9fa;
+        }
+
+        .schedule-list {
+            list-style: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .schedule-item {
+            padding: 2rem;
+            background: #fff;
+            margin-bottom: 1rem;
+            border-left: 4px solid #FFB800;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .schedule-time {
+            color: #FFB800;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-title {
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .schedule-desc {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Speakers */
+        #speakers {
+            background: #fff;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .speaker-card {
+            background: #f8f9fa;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .speaker-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .speaker-avatar {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #FFB800 0%, #FF9500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .speaker-info {
+            padding: 1.5rem;
+        }
+
+        .speaker-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-info p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Signup */
+        #signup {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+        }
+
+        #signup h2 {
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #lead-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #lead-form label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        #lead-form input {
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        #lead-form input:focus {
+            outline: none;
+            border-color: #FFB800;
+            box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.1);
+            background: #fffbf0;
+        }
+
+        #lead-form button {
+            grid-column: 1 / -1;
+            padding: 1.1rem;
+            background: #FFB800;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
+        }
+
+        #lead-form button:hover {
+            background: #FF9500;
+            box-shadow: 0 6px 20px rgba(255, 184, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Related Courses */
+        #courses {
+            background: #fff;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            border-color: #FFB800;
+            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.15);
+        }
+
+        .course-header {
+            height: 150px;
+            background: linear-gradient(135deg, #FFB800 0%, #FF9500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .course-body {
+            padding: 2rem;
+        }
+
+        .course-body h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .course-body p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #aaa;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #FFB800;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header h1 {
+                font-size: 3rem;
+            }
+
+            .nav-container,
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 500px;
+                padding: 3rem 2rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .event-info {
+                font-size: 0.95rem;
+            }
+
+            .cta-buttons {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .speakers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            #lead-form {
+                grid-template-columns: 1fr;
+            }
+
+            #lead-form button {
+                grid-column: 1;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                MIDE
+            </div>
+            <ul>
+                <li><a href="#event-details">Evento</a></li>
+                <li><a href="#speakers">Ponentes</a></li>
+                <li><a href="#schedule">Programa</a></li>
+                <li><a href="#signup">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>MIDE Summit SEO 2026</h1>
+            <div class="event-info">
+                <p>19 de mayo de 2026 | Auditorio Talent Garden en Madrid</p>
+                <p>Entradas: 100€</p>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn">Compra tu Entrada</button>
+                <a href="#signup" class="btn btn-secondary">Contacta con Nosotros</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="event-details">
+                <h2>Detalles del Evento</h2>
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3>📅 Fecha y Hora</h3>
+                        <p>19 de Mayo, 2026</p>
+                        <p>10:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>📍 Ubicación</h3>
+                        <p>Auditorio Talent Garden</p>
+                        <p>Calle Juan de Mariana 15, Madrid</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>🎟️ Entradas</h3>
+                        <p>€100 por persona</p>
+                        <p>Incluye almuerzo y materiales</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="description">
+                <h3>La nueva era del SEO</h3>
+                <p>MIDE Summit 2026 explora cómo los chatbots de IA están transformando el comportamiento de búsqueda. Nos transitamos de estrategias de ranking tradicionales a optimización conversacional, pasando de ranking a contexto, de clic a intención.</p>
+                <p>Reúne a líderes de la industria implementando estrategias de búsqueda impulsadas por IA. El programa incluye sesiones sobre consenso semántico, autoridad de marca a través de PR Digital, medición de visibilidad en búsqueda de IA y creación de contenido con herramientas de IA.</p>
+            </section>
+
+            <section id="benefits">
+                <h3>Por Qué Asistir</h3>
+                <ul>
+                    <li>Aprende estrategias de SEO impulsadas por IA de expertos de la industria</li>
+                    <li>Entiende cómo los chatbots de IA están redefiniendo el comportamiento de búsqueda</li>
+                    <li>Domina el consenso semántico y la autoridad de marca a través de PR Digital</li>
+                    <li>Descubre técnicas para medir visibilidad en búsqueda impulsada por IA</li>
+                    <li>Participa en una masterclass sobre creación de contenido asistida por IA</li>
+                    <li>Conecta con profesionales de SEO líderes e innovadores</li>
+                    <li>Accede a presentaciones de ponentes reconocidos en el campo</li>
+                </ul>
+            </section>
+
+            <section id="schedule">
+                <h2>Programa</h2>
+                <ul class="schedule-list">
+                    <li class="schedule-item">
+                        <div class="schedule-time">10:00 - 10:30</div>
+                        <div>
+                            <div class="schedule-title">Bienvenida y Keynote: La nueva era del SEO</div>
+                            <div class="schedule-desc">Apertura del evento con visión general de las tendencias actuales</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">10:30 - 11:30</div>
+                        <div>
+                            <div class="schedule-title">Chatbots de IA y Búsqueda Conversacional</div>
+                            <div class="schedule-desc">Impacto y estrategias para adaptarse al nuevo panorama de búsqueda</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">11:30 - 12:30</div>
+                        <div>
+                            <div class="schedule-title">Consenso Semántico y Autoridad de Marca</div>
+                            <div class="schedule-desc">Cómo construir autoridad a través de PR Digital</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">12:30 - 1:30 PM</div>
+                        <div>
+                            <div class="schedule-title">Almuerzo y Networking</div>
+                            <div class="schedule-desc">Pausa para conectar con otros profesionales</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">1:30 - 3:00 PM</div>
+                        <div>
+                            <div class="schedule-title">Masterclass: Creación de Contenido con IA</div>
+                            <div class="schedule-desc">Aprende técnicas prácticas para crear contenido asistido por IA</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">3:00 - 4:00 PM</div>
+                        <div>
+                            <div class="schedule-title">Midiendo Visibilidad en Búsqueda de IA</div>
+                            <div class="schedule-desc">Métricas y herramientas para medir éxito en búsqueda impulsada por IA</div>
+                        </div>
+                    </li>
+                    <li class="schedule-item">
+                        <div class="schedule-time">4:00 - 6:00 PM</div>
+                        <div>
+                            <div class="schedule-title">Panel de Discusión y Recepción</div>
+                            <div class="schedule-desc">Preguntas y respuestas con todos los ponentes</div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="speakers">
+                <h2>Los referentes que están definiendo el futuro del SEO</h2>
+                <div class="speakers-grid">
+                    <div class="speaker-card">
+                        <div class="speaker-avatar">NR</div>
+                        <div class="speaker-info">
+                            <h4>Natzir Turrado Ruiz</h4>
+                            <p>SEO & CRO Consultant</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-avatar">GL</div>
+                        <div class="speaker-info">
+                            <h4>Giannella Ligato</h4>
+                            <p>eCommerce SEO Expert</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-avatar">FM</div>
+                        <div class="speaker-info">
+                            <h4>Fernando Maciá Domene</h4>
+                            <p>Founder, Human Level</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-avatar">AB</div>
+                        <div class="speaker-info">
+                            <h4>Ana Belén Leiño</h4>
+                            <p>SEO Project Manager, LIN3S</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-avatar">DV</div>
+                        <div class="speaker-info">
+                            <h4>David Villarrubia</h4>
+                            <p>Full Stack SEO Consultant</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="signup">
+                <h2>Contacta con Nosotros</h2>
+                <div class="form-container">
+                    <form id="lead-form">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Apellido</label>
+                            <input type="text" id="surname" name="surname" placeholder="Tu apellido" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">País</label>
+                            <input type="text" id="country" name="country" placeholder="Tu país" required>
+                        </div>
+                        <button type="submit">Solicitar Entrada</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="courses">
+                <h2>Cursos Relacionados</h2>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-header">SEO 101</div>
+                        <div class="course-body">
+                            <h4>SEO y posicionamiento en IA</h4>
+                            <p>Aprende los fundamentos del SEO moderno en la era de la inteligencia artificial y la búsqueda conversacional.</p>
+                            <div class="course-meta">
+                                <span>6 semanas</span>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header">SEM +</div>
+                        <div class="course-body">
+                            <h4>Experto en SEO y Analítica digital</h4>
+                            <p>Domina las estrategias avanzadas de SEO y aprende a medir el impacto real de tus acciones.</p>
+                            <div class="course-meta">
+                                <span>8 semanas</span>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header">AI 🤖</div>
+                        <div class="course-body">
+                            <h4>MIDE e Inteligencia Artificial</h4>
+                            <p>Descubre cómo la IA está transformando el marketing digital y cómo aprovecharla en tu estrategia.</p>
+                            <div class="course-meta">
+                                <span>10 semanas</span>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Formación</h4>
+                    <ul>
+                        <li><a href="#">Cursos SEO</a></li>
+                        <li><a href="#">Cursos SEM</a></li>
+                        <li><a href="#">IA y Marketing</a></li>
+                        <li><a href="#">Certificaciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Eventos</h4>
+                    <ul>
+                        <li><a href="#">MIDE Summit</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Talleres</a></li>
+                        <li><a href="#">Conferencias</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MIDE Summit. Todos los derechos reservados. | Powered by LIN3S</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

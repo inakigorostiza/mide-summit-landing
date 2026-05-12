@@ -1,0 +1,30 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if used)
+node_modules/
+.npm
+package-lock.json
+
+# Python (if used)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Build files
+dist/
+build/
+*.log
