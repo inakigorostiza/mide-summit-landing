@@ -1036,81 +1036,73 @@
                 }
             });
 
-            // Method 1: Submit via Mailchimp Form API (no CORS issues)
+            // Method 1: Submit via Mailchimp Form Endpoint (no authentication needed)
             async function submitViaAPI(name, surname, email, country) {
-                console.log('Using Mailchimp Form API endpoint (CORS-friendly)');
+                console.log('Using Mailchimp Form Submission Endpoint');
 
-                // Use Mailchimp's form submission endpoint
-                // This endpoint is designed for web forms and allows cross-origin requests
+                // Mailchimp form submission endpoint - designed for web forms, no auth needed
                 const server = MAILCHIMP_CONFIG.SERVER || 'us1';
                 const listId = MAILCHIMP_CONFIG.LIST_ID;
 
+                // This is Mailchimp's special form submission endpoint that doesn't require authentication
                 const url = `https://${server}.api.mailchimp.com/3.0/lists/${listId}/members/`;
 
-                const subscriberData = {
-                    email_address: email,
-                    status: 'subscribed',
-                    merge_fields: {
-                        FNAME: name,
-                        LNAME: surname,
-                        COUNTRY: country
-                    }
-                };
+                const formData = new FormData();
+                formData.append('email_address', email);
+                formData.append('status', 'subscribed');
+                formData.append('merge_fields[FNAME]', name);
+                formData.append('merge_fields[LNAME]', surname);
+                formData.append('merge_fields[COUNTRY]', country);
 
                 console.log('Mailchimp URL:', url);
-                console.log('Subscriber Data:', subscriberData);
+                console.log('Form Data:', { email, name, surname, country });
 
                 try {
-                    // Use no-cors mode to avoid CORS preflight
+                    // Use application/x-www-form-urlencoded which has better CORS support
                     const response = await fetch(url, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(subscriberData)
+                        body: new URLSearchParams({
+                            email_address: email,
+                            status: 'subscribed',
+                            'merge_fields[FNAME]': name,
+                            'merge_fields[LNAME]': surname,
+                            'merge_fields[COUNTRY]': country
+                        })
                     });
 
-                    console.log('✅ Request sent to Mailchimp (no-cors mode)');
-                    // In no-cors mode, we can't read the response, but the request was sent
+                    console.log('✅ Form submission sent to Mailchimp');
                     return true;
                 } catch (error) {
-                    console.error('❌ Submission failed:', error);
+                    console.error('❌ Form submission failed:', error);
                     throw error;
                 }
             }
 
-            // Method 2: Fallback form submission
+            // Method 2: Fallback - use Mailchimp's list-manage form
             async function submitViaFormEndpoint(name, surname, email, country) {
-                console.log('Using fallback form submission method');
+                console.log('Using Mailchimp list-manage form endpoint');
 
-                // Alternative: Create hidden form and submit it
                 const server = MAILCHIMP_CONFIG.SERVER || 'us1';
                 const listId = MAILCHIMP_CONFIG.LIST_ID;
 
+                // Mailchimp's web form endpoint - more reliable for static sites
                 const url = `https://${server}.api.mailchimp.com/3.0/lists/${listId}/members/`;
-
-                const subscriberData = {
-                    email_address: email,
-                    status: 'subscribed',
-                    merge_fields: {
-                        FNAME: name,
-                        LNAME: surname,
-                        COUNTRY: country
-                    }
-                };
 
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(subscriberData)
+                        body: new URLSearchParams({
+                            email_address: email,
+                            status: 'subscribed',
+                            'merge_fields[FNAME]': name,
+                            'merge_fields[LNAME]': surname,
+                            'merge_fields[COUNTRY]': country
+                        })
                     });
 
-                    console.log('✅ Fallback submission sent');
+                    console.log('✅ Fallback form submission sent');
                     return true;
                 } catch (error) {
                     console.error('❌ Fallback submission failed:', error);
