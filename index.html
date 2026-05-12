@@ -998,6 +998,11 @@
                 const email = document.getElementById('email').value.trim();
                 const country = document.getElementById('country').value.trim();
 
+                // Debug log
+                console.log('Form submitted with:', { name, surname, email, country });
+                console.log('MAILCHIMP_CONFIG:', MAILCHIMP_CONFIG);
+                console.log('isMailchimpConfigured():', isMailchimpConfigured());
+
                 // Show loading state
                 showStatus('Registrando...', 'loading');
                 submitBtn.disabled = true;
@@ -1005,12 +1010,15 @@
                 try {
                     // Check if local Mailchimp API is configured
                     if (isMailchimpConfigured()) {
+                        console.log('Using Method 1: Mailchimp API');
                         // Method 1: Use Mailchimp API (for local testing with mailchimp-config.js)
                         await submitViaAPI(name, surname, email, country);
                     } else if (MAILCHIMP_CONFIG.LIST_ID && MAILCHIMP_CONFIG.LIST_ID !== 'your_mailchimp_list_id_here') {
+                        console.log('Using Method 2: Mailchimp Form Endpoint');
                         // Method 2: Use Mailchimp form endpoint (for GitHub Pages)
                         await submitViaFormEndpoint(name, surname, email, country);
                     } else {
+                        console.log('Config not found:', MAILCHIMP_CONFIG);
                         showStatus('⚠️ Mailchimp no está configurado. Ejecuta: ./mailchimp-setup.sh', 'error');
                         submitBtn.disabled = false;
                         return;
@@ -1043,20 +1051,32 @@
                 const basicAuth = btoa('anystring:' + MAILCHIMP_CONFIG.API_KEY);
                 const url = `https://${MAILCHIMP_CONFIG.SERVER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_CONFIG.LIST_ID}/members`;
 
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Basic ' + basicAuth,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(subscriberData)
-                });
+                console.log('API URL:', url);
+                console.log('Subscriber Data:', subscriberData);
 
-                const result = await response.json();
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Basic ' + basicAuth,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(subscriberData)
+                    });
 
-                if (!response.ok && result.title !== 'Member Exists') {
-                    const errorMsg = result.detail || result.title || 'Error desconocido';
-                    throw new Error(errorMsg);
+                    const result = await response.json();
+                    console.log('Mailchimp Response:', response.status, result);
+
+                    if (!response.ok && result.title !== 'Member Exists') {
+                        const errorMsg = result.detail || result.title || 'Error desconocido';
+                        throw new Error(`${response.status} - ${errorMsg}`);
+                    }
+
+                    console.log('✅ Successfully submitted to Mailchimp');
+                    return true;
+                } catch (error) {
+                    console.error('❌ API submission failed:', error);
+                    throw error;
                 }
             }
 
