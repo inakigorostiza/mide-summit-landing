@@ -1,6 +1,7 @@
 // Mailchimp Configuration
 // This file is auto-populated by the setup script
 // DO NOT manually edit - run ./mailchimp-setup.sh instead
+// NOTE: API key is stored in .env (git-ignored) for security
 
 const MAILCHIMP_CONFIG = {
     API_KEY: 'your_mailchimp_api_key_here',

@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Mailchimp configuration (contains API key)
+mailchimp-config.js
+
 # IDE
 .vscode/
 .idea/
